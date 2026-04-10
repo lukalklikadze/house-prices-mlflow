@@ -81,3 +81,29 @@ Baseline-ის გარდა, სხვა მეთოდებმა და
 
 
 Lasso + corr_target კომბინაცია საუკეთესო იყო ორივე კრიტერიუმით: ყველაზე დაბალი val RMSE (0.1196) და ყველაზე პატარა overfit gap (+0.020). პატარა gap-ი თითქმის ისეთივე მნიშვნელოვანია, როგორც დაბალი error, რადგან ნიშნავს, რომ მოდელი კარგად განზოგადებადია. ამიტომ ავარჩიე ეს კომბინაცია საბოლოო პასუხად.
+
+## MLflow Tracking
+
+### MLflow ექსპერიმენტების ბმული
+
+[https://dagshub.com/llikl23/house-prices-mlflow.mlflow](https://dagshub.com/llikl23/house-prices-mlflow.mlflow)
+
+სულ 29 run-ი დავლოგე: 28 phase 1 ექსპერიმენტი (4 მოდელი × 7 feature set) და 1 საბოლოო registered მოდელი.
+
+### ჩაწერილი მეტრიკების აღწერა
+
+თითოეული run-ისთვის MLflow-ში დავლოგე შემდეგი ინფორმაცია:
+
+* **Parameters:** `model` (მოდელის სახელი), `feature_set` (გამოყენებული selection მეთოდი), `n_features` (feature-ების რაოდენობა), `needs_scaling`, და ყველა hyperparameter.
+* **Metrics:** `train_rmse`, `val_rmse` (ორივე log-space-ში, რაც ემთხვევა Kaggle-ის RMSLE მეტრიკას), და `overfit_gap` (val_rmse - train_rmse, რომელიც overfitting-ის სპოტინგისთვის გამოვიყენე).
+* **Artifacts:** სრული sklearn Pipeline (scaler + model).
+
+### საუკეთესო მოდელის შედეგები
+
+Model:        Lasso (alpha=0.001)
+Feature set:  corr_target
+Pipeline:     StandardScaler → Lasso
+Train RMSE:   0.0999
+Val RMSE:     0.1196
+Overfit gap:  +0.020
+Kaggle score: 0.14209
