@@ -101,9 +101,15 @@ Lasso + corr_target კომბინაცია საუკეთესო �
 ### საუკეთესო მოდელის შედეგები
 
 Model:        Lasso (alpha=0.001)
+
 Feature set:  corr_target
+
 Pipeline:     StandardScaler → Lasso
+
 Train RMSE:   0.0999
+
 Val RMSE:     0.1196
+
 Overfit gap:  +0.020
+
 Kaggle score: 0.14209
